@@ -1,0 +1,10 @@
+com/example/simplecalculator/BuildConfig.java
+ com.example.simplecalculator.BuildConfig
+com/example/simplecalculator/MainActivity.java
+ com.example.simplecalculator.MainActivity
+ com.example.simplecalculator.MainActivity$1
+ com.example.simplecalculator.MainActivity$2
+ com.example.simplecalculator.MainActivity$3
+ com.example.simplecalculator.MainActivity$4
+ com.example.simplecalculator.MainActivity$5
+ com.example.simplecalculator.MainActivity$6
