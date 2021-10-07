@@ -68,70 +68,58 @@ public class MainActivity extends AppCompatActivity {
 
         bDiv.setOnClickListener(btnOprListener);
 
-        bBKSP.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String text = textView.getText().toString();
-                int length = textView.length();
-                if (length > 0) {
-                    textView.setText(text.substring(0, length - 1));
+        bBKSP.setOnClickListener(view -> {
+            String text = textView.getText().toString();
+            int length = textView.length();
+            if (length > 0) {
+                textView.setText(text.substring(0, length - 1));
+            }
+        });
+
+        bSign.setOnClickListener(view -> {
+            if (!textView.getText().toString().equals("")) {
+                int tmp = Integer.parseInt(textView.getText().toString(), 10);
+                tmp = -tmp;
+                textView.setText(String.format("%s", tmp));
+                if (op1 == Integer.MIN_VALUE) {
+                    op1 = tmp;
+                } else if (op2 == Integer.MIN_VALUE) {
+                    op2 = tmp;
                 }
             }
         });
 
-        bSign.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!textView.getText().toString().equals("")) {
-                    int tmp = Integer.parseInt(textView.getText().toString(), 10);
-                    tmp = -tmp;
-                    textView.setText(String.format("%s", tmp));
-                    if (op1 == Integer.MIN_VALUE) {
-                        op1 = tmp;
-                    } else if (op2 == Integer.MIN_VALUE) {
-                        op2 = tmp;
-                    }
+        bEqual.setOnClickListener(view -> {
+            op2 = Integer.parseInt(textView.getText().toString(), 10);
+            if (op2 != Integer.MIN_VALUE) {
+                switch (operator) {
+                    case "+":
+                        res = op1 + op2;
+                        textView.setText(String.valueOf(res));
+                        break;
+                    case "-":
+                        res = op1 - op2;
+                        textView.setText(String.valueOf(res));
+                        break;
+                    case "*":
+                        res = op1 * op2;
+                        textView.setText(String.valueOf(res));
+                        break;
+                    case "/":
+                        if (op2 == 0) {
+                            textView.setText(R.string.err);
+                        } else {
+                            res = op1 / op2;
+                            textView.setText(String.valueOf(res));
+                        }
                 }
             }
         });
 
-        bEqual.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                op2 = Integer.parseInt(textView.getText().toString(), 10);
-                if (op2 != Integer.MIN_VALUE) {
-                    switch (operator) {
-                        case "+":
-                            res = op1 + op2;
-                            textView.setText(String.valueOf(res));
-                            break;
-                        case "-":
-                            res = op1 - op2;
-                            textView.setText(String.valueOf(res));
-                            break;
-                        case "*":
-                            res = op1 * op2;
-                            textView.setText(String.valueOf(res));
-                            break;
-                        case "/":
-                            if (op2 == 0) {
-                                textView.setText(R.string.err);
-                            } else {
-                                res = op1 / op2;
-                                textView.setText(String.valueOf(res));
-                            }
-                    }
-                }
-            }
-        });
-
-        bClear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                op1 = Integer.MIN_VALUE;
-                op2 = Integer.MIN_VALUE;
-                textView.setText("");
-            }
+        bClear.setOnClickListener(view -> {
+            op1 = Integer.MIN_VALUE;
+            op2 = Integer.MIN_VALUE;
+            textView.setText("");
         });
     }
 
